@@ -131,7 +131,7 @@
 
 <script>
 import ProductItem from "../components/product/Item";
-import { mapGetters, mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "CategoryPage",
   components: { ProductItem },
@@ -141,7 +141,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["products"])
+    ...mapState({ products: state => state.product.products })
+    // console.log(...mapGetters(["products"]))
   },
   methods: {
     ...mapActions(["fetchProducts", "fetchFilterProduct"]),

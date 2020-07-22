@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomePage from '@/pages/HomePage'
 import CategoryPage from '@/pages/CategoryPage'
 import ProductDetail from '@/pages/ProductDetailPage'
+import LoginPage from '@/pages/LoginPage'
+import RegisterPage from "@/pages/RegisterPage"
 
 Vue.use(VueRouter)
 
@@ -11,6 +13,16 @@ const routes = [
     path: '/',
     name: 'HomePage',
     component: HomePage
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginPage
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: RegisterPage
   },
   {
     path: '/category',
