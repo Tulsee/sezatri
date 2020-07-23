@@ -43,7 +43,7 @@
             <div class="latest_product_inner">
               <div class="row">
                 <!-- Product Item Lists  -->
-                <ProductItem v-for="product in products" :key="product.id" :product="product" />
+                <ProductItem v-for="product in products" :key="product.id" :product="product" class="col-lg-4 col-md-6" />
               </div>
             </div>
           </div>

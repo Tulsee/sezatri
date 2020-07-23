@@ -596,7 +596,7 @@ import { mapActions, mapState } from "vuex";
 export default {
   name: "ProductDetail",
   computed: {
-    ...mapState({ product: state => state.product.product })
+    ...mapState({ product: (state) => state.product.product })
   },
   created() {
     const productId = this.$route.params.id;
