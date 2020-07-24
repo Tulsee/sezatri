@@ -5,7 +5,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action
 from .serializers import ProductSerializer, newProductSerializer
-from rest_framework import status
 
 
 from .models import Product
@@ -26,6 +25,12 @@ class NewProductViewSet(viewsets.ModelViewSet):
         '-listed_date').filter(is_published=True)
     queryset = queryset[:4]
     serializer_class = newProductSerializer
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            print("USER", request.user)
+        else:
+            print("USER not authenticated")
 
 
 class featureProductViewSet(viewsets.ModelViewSet):
