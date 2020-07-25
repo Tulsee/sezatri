@@ -22,21 +22,37 @@
                 </div>-->
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input v-model="form.username" type="text" class="form-control" />
+                  <input
+                    v-model="form.username"
+                    type="text"
+                    class="form-control"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input v-model="form.email" type="email" class="form-control" />
+                  <input
+                    v-model="form.email"
+                    type="email"
+                    class="form-control"
+                  />
                 </div>
                 <div class="form-group">
                   <label for="password2">Password</label>
-                  <input v-model="form.password" type="password" class="form-control" />
+                  <input
+                    v-model="form.password"
+                    type="password"
+                    class="form-control"
+                  />
                 </div>
                 <!-- <div class="form-group">
                   <label for="password">Confirm Password</label>
                   <input type="password" name="password2" class="form-control" required />
                 </div>-->
-                <input @click.prevent="register" type="submit" class="btn btn-success btn-block" />
+                <input
+                  @click.prevent="register"
+                  type="submit"
+                  class="btn btn-success btn-block"
+                />
               </form>
               <br />
               <h5>
@@ -78,5 +94,4 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

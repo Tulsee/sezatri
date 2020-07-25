@@ -16,7 +16,7 @@ from .serializers import CartSerializers
 class CartViewSet(ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializers
-    lookup_field =  'customer'
+    lookup_field = 'customer'
 
     def create(self, request, *args, **kwargs):
         # data = request.data
@@ -24,12 +24,30 @@ class CartViewSet(ModelViewSet):
         customer = dataCopy['customer']
         user = get_object_or_404(User, id=customer)
         customer, created = CustomerDetail.objects.get_or_create(user=user)
+        dataCopy['customer'] = customer.id
         serializer = CartSerializers(data=dataCopy)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+
+        # if(created):
+        #     dataCopy['customer'] = created.id
+        #     serializer = CartSerializers(data=dataCopy)
+        #     if serializer.is_valid():
+        #         serializer.save()
+        #         return Response(serializer.data)
+        #     else:
+        #         return Response(serializer.errors)
+        # else:
+        #     dataCopy['customer'] = customer.id
+        #     serializer = CartSerializers(data=dataCopy)
+        #     if serializer.is_valid():
+        #         serializer.save()
+        #         return Response(serializer.data)
+        #     else:
+        #         return Response(serializer.errors)
         # if(created):
         #     return Response({'message': created})
         #     dataCopy['customer'] = created.id

@@ -8,8 +8,7 @@
             <div class="col-lg-12">
               <p class="sub text-uppercase">men Collection</p>
               <h3>
-                <span>Show</span> Your
-                <br />Personal
+                <span>Show</span> Your <br />Personal
                 <span>Style</span>
               </h3>
               <h4>Fowl saw dry which a above together place.</h4>
@@ -84,7 +83,12 @@
         </div>
 
         <div class="row">
-          <ProductItem v-for="product in featureProduct" :key="product.id" :product="product" class="col-lg-3 col-md-6" />
+          <ProductItem
+            v-for="product in featureProduct"
+            :key="product.id"
+            :Product="product"
+            class="col-lg-3 col-md-6"
+          />
         </div>
       </div>
     </section>
@@ -122,9 +126,14 @@
         </div>
 
         <div class="latest_product_inner">
-            <div class="row">
-              <ProductItem v-for="product in newProduct" :key="product.id" :product="product" class="col-lg-3 col-md-6" />
-            </div>
+          <div class="row">
+            <ProductItem
+              v-for="product in newProduct"
+              :key="product.id"
+              :Product="product"
+              class="col-lg-3 col-md-6"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -148,7 +157,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i1.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i1.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -176,7 +189,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i2.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i2.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -204,7 +221,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i3.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i3.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -232,7 +253,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i4.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i4.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -260,7 +285,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i5.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i5.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -288,7 +317,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i6.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i6.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -316,7 +349,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i7.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i7.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -344,7 +381,11 @@
           <div class="col-lg-3 col-md-6">
             <div class="single-product">
               <div class="product-img">
-                <img class="img-fluid w-100" src="img/product/inspired-product/i8.jpg" alt />
+                <img
+                  class="img-fluid w-100"
+                  src="img/product/inspired-product/i8.jpg"
+                  alt
+                />
                 <div class="p_icon">
                   <a href="#">
                     <i class="ti-eye"></i>
@@ -396,20 +437,18 @@
               <div class="short_details">
                 <div class="meta-top d-flex">
                   <a href="#">By Admin</a>
-                  <a href="#">
-                    <i class="ti-comments-smiley"></i>2 Comments
-                  </a>
+                  <a href="#"> <i class="ti-comments-smiley"></i>2 Comments </a>
                 </div>
                 <a class="d-block" href="single-blog.html">
                   <h4>
-                    Ford clever bed stops your sleeping
-                    partner hogging the whole
+                    Ford clever bed stops your sleeping partner hogging the
+                    whole
                   </h4>
                 </a>
                 <div class="text-wrap">
                   <p>
-                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged divided light
-                    Forth.
+                    Let one fifth i bring fly to divided face for bearing the
+                    divide unto seed winged divided light Forth.
                   </p>
                 </div>
                 <a href="#" class="blog_btn">
@@ -428,20 +467,18 @@
               <div class="short_details">
                 <div class="meta-top d-flex">
                   <a href="#">By Admin</a>
-                  <a href="#">
-                    <i class="ti-comments-smiley"></i>2 Comments
-                  </a>
+                  <a href="#"> <i class="ti-comments-smiley"></i>2 Comments </a>
                 </div>
                 <a class="d-block" href="single-blog.html">
                   <h4>
-                    Ford clever bed stops your sleeping
-                    partner hogging the whole
+                    Ford clever bed stops your sleeping partner hogging the
+                    whole
                   </h4>
                 </a>
                 <div class="text-wrap">
                   <p>
-                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged divided light
-                    Forth.
+                    Let one fifth i bring fly to divided face for bearing the
+                    divide unto seed winged divided light Forth.
                   </p>
                 </div>
                 <a href="#" class="blog_btn">
@@ -460,20 +497,18 @@
               <div class="short_details">
                 <div class="meta-top d-flex">
                   <a href="#">By Admin</a>
-                  <a href="#">
-                    <i class="ti-comments-smiley"></i>2 Comments
-                  </a>
+                  <a href="#"> <i class="ti-comments-smiley"></i>2 Comments </a>
                 </div>
                 <a class="d-block" href="single-blog.html">
                   <h4>
-                    Ford clever bed stops your sleeping
-                    partner hogging the whole
+                    Ford clever bed stops your sleeping partner hogging the
+                    whole
                   </h4>
                 </a>
                 <div class="text-wrap">
                   <p>
-                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged divided light
-                    Forth.
+                    Let one fifth i bring fly to divided face for bearing the
+                    divide unto seed winged divided light Forth.
                   </p>
                 </div>
                 <a href="#" class="blog_btn">
@@ -514,5 +549,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

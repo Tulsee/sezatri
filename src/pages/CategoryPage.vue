@@ -4,7 +4,9 @@
     <section class="banner_area">
       <div class="banner_inner d-flex align-items-center">
         <div class="container">
-          <div class="banner_content d-md-flex justify-content-between align-items-center">
+          <div
+            class="banner_content d-md-flex justify-content-between align-items-center"
+          >
             <div class="mb-3 mb-md-0">
               <h2>Shop Category</h2>
               <p>Very us move be blessed multiply night</p>
@@ -43,45 +45,82 @@
             <div class="latest_product_inner">
               <div class="row">
                 <!-- Product Item Lists  -->
-                <ProductItem v-for="product in products" :key="product.id" :product="product" class="col-lg-4 col-md-6" />
+                <ProductItem
+                  v-for="product in products"
+                  :key="product.id"
+                  :Product="product"
+                  class="col-lg-4 col-md-6"
+                />
               </div>
             </div>
           </div>
 
           <div class="col-lg-3">
             <div class="left_sidebar_area">
-              <aside class="left_widgets p_filter_widgets" style="background:#fff;">
+              <aside
+                class="left_widgets p_filter_widgets"
+                style="background:#fff;"
+              >
                 <div class="l_w_title">
                   <h3>Browse Categories</h3>
                 </div>
                 <div class="widgets_inner">
                   <ul class="list">
                     <li>
-                      <a @click="this.fetchProducts" style="cursor:pointer;">All</a>
+                      <a @click="this.fetchProducts" style="cursor:pointer;"
+                        >All</a
+                      >
                     </li>
                     <li>
-                      <a @click.prevent="filterCategory('Gurung')" style="cursor:pointer;">Gurung</a>
+                      <a
+                        @click.prevent="filterCategory('Gurung')"
+                        style="cursor:pointer;"
+                        >Gurung</a
+                      >
                     </li>
                     <li>
-                      <a @click.prevent="filterCategory('Newar')" style="cursor:pointer;">Newar</a>
+                      <a
+                        @click.prevent="filterCategory('Newar')"
+                        style="cursor:pointer;"
+                        >Newar</a
+                      >
                     </li>
                     <li>
-                      <a @click.prevent="filterCategory('Magar')" style="cursor:pointer;">Magar</a>
+                      <a
+                        @click.prevent="filterCategory('Magar')"
+                        style="cursor:pointer;"
+                        >Magar</a
+                      >
                     </li>
                     <li>
-                      <a @click.prevent="filterCategory('Rai')" style="cursor:pointer;">Rai</a>
+                      <a
+                        @click.prevent="filterCategory('Rai')"
+                        style="cursor:pointer;"
+                        >Rai</a
+                      >
                     </li>
                     <li>
-                      <a @click.prevent="filterCategory('Sherpa')" style="cursor:pointer;">Sherpa</a>
+                      <a
+                        @click.prevent="filterCategory('Sherpa')"
+                        style="cursor:pointer;"
+                        >Sherpa</a
+                      >
                     </li>
                     <li>
-                      <a @click.prevent="filterCategory('Tamang')" style="cursor:pointer;">Tamang</a>
+                      <a
+                        @click.prevent="filterCategory('Tamang')"
+                        style="cursor:pointer;"
+                        >Tamang</a
+                      >
                     </li>
                   </ul>
                 </div>
               </aside>
 
-              <aside class="left_widgets p_filter_widgets" style="background:#fff;">
+              <aside
+                class="left_widgets p_filter_widgets"
+                style="background:#fff;"
+              >
                 <div class="l_w_title">
                   <h3>Color Filter</h3>
                 </div>
@@ -106,7 +145,10 @@
                 </div>
               </aside>
 
-              <aside class="left_widgets p_filter_widgets" style="background:#fff;">
+              <aside
+                class="left_widgets p_filter_widgets"
+                style="background:#fff;"
+              >
                 <div class="l_w_title">
                   <h3>Price Filter</h3>
                 </div>
@@ -156,5 +198,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
