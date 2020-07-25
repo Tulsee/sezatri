@@ -15,7 +15,10 @@ const state = {
   user: null
 };
 const getters = {
-  user: (state) => state.user
+  user: (state) => state.user,
+  authUser(state) {
+    return state.user || null
+  }
 };
 const actions = {
   loginWithUsernameAndPassword({
@@ -43,6 +46,17 @@ const actions = {
     //     return error
     //   })
   }
+  // async getAuthUser({
+  //   commit,
+  //   getters
+  // }) {
+  //   const authUser = getters.authUser
+  //   const token = localStorage.getItem('user-jwt')
+  //   const isTokenValid = checkTokenValidity(token)
+  //   if (authUser && isTokenValid) {
+  //     return Promise.resolve(authUser)
+  //   }
+  // }
 };
 const mutations = {
   setAuthUser: (state, user) => {

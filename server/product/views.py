@@ -10,7 +10,7 @@ from .serializers import ProductSerializer, newProductSerializer
 from .models import Product
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     # permission_classes = (IsAuthenticated,)
@@ -20,7 +20,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     # search_fields = ('name', 'category', 'price')
 
 
-class NewProductViewSet(viewsets.ModelViewSet):
+class NewProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.order_by(
         '-listed_date').filter(is_published=True)
     queryset = queryset[:4]
@@ -33,7 +33,7 @@ class NewProductViewSet(viewsets.ModelViewSet):
             print("USER not authenticated")
 
 
-class featureProductViewSet(viewsets.ModelViewSet):
+class featureProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.order_by(
         '-views').filter(is_published=True)
     queryset = queryset[:4]
