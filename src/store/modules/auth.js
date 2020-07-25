@@ -1,15 +1,19 @@
 import axios from 'axios'
-// import jwt from 'jsonwebtoken'
+// import {
+//   encryptToken,
+//   decryptToken
+// } from '../../helpers/token'
+import jwt from 'jsonwebtoken'
 
 
-// function checkTokenValidity(token) {
-//   if (token) {
-//     const decodedToken = jwt.decode(token)
+function checkTokenValidity(token) {
+  if (token) {
+    const decodedToken = jwt.decode(token)
 
-//     return decodedToken && (decodedToken.exp * 1000) > new Date().getTime()
-//   }
-//   return false
-// }
+    return decodedToken && (decodedToken.exp * 1000) > new Date().getTime()
+  }
+  return false
+}
 
 const state = {
   user: null
@@ -27,7 +31,9 @@ const actions = {
     const data = JSON.parse(JSON.stringify(formData))
     return axios.post('/api/v1/user/login/', data).then((response) => {
       const user = response.data
-      localStorage.setItem('user-jwt', user.access)
+      // var token = encryptToken(user.access)
+      // console.log(user)
+      localStorage.setItem('user-jwt', user.token)
       commit('setAuthUser', user)
       return response
     }).catch((error) => {
@@ -45,18 +51,33 @@ const actions = {
     //   }).catch((error) => {
     //     return error
     //   })
+  },
+  getAuthUser({
+    commit,
+    getters
+  }) {
+    const authUser = getters.authUser
+    const token = localStorage.getItem('user-jwt')
+    // const token = decryptToken(data)
+    var formData = {
+      token: token
+    }
+    const data = JSON.parse(JSON.stringify(formData))
+    const isTokenValid = checkTokenValidity(token)
+    console.log(isTokenValid)
+    if (authUser && isTokenValid) {
+      return Promise.resolve(authUser)
+    } else if (isTokenValid) {
+      console.log(token)
+      return axios.post(`/api/v1/user/getuser/`, data)
+        .then(response => {
+          console.log(token)
+          const user = response.data
+          commit('setAuthUser', user)
+          return response
+        })
+    }
   }
-  // async getAuthUser({
-  //   commit,
-  //   getters
-  // }) {
-  //   const authUser = getters.authUser
-  //   const token = localStorage.getItem('user-jwt')
-  //   const isTokenValid = checkTokenValidity(token)
-  //   if (authUser && isTokenValid) {
-  //     return Promise.resolve(authUser)
-  //   }
-  // }
 };
 const mutations = {
   setAuthUser: (state, user) => {

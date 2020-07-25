@@ -8,6 +8,7 @@
               <div class="float-left">
                 <p>Phone: +01 256 25 235</p>
                 <p>email: info@eiser.com</p>
+                <p v-if="authUser">Welcome {{authUser.username}}</p>
               </div>
             </div>
             <div class="col-lg-5">
@@ -159,8 +160,17 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  computed: {
+    ...mapGetters(["authUser"])
+  },
+  created() {
+    this.getAuthUser();
+    console.log("created");
+  },
+  methods: { ...mapActions(["getAuthUser"]) }
 };
 </script>
 

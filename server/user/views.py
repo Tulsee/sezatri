@@ -36,7 +36,7 @@ class GetAuthUserViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 @authentication_classes([JSONWebTokenAuthentication, ])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def GetUser(request):
     data = request.data
     token = data['token']
