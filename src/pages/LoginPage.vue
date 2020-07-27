@@ -5,24 +5,34 @@
         <div class="col-md-6 mx-auto">
           <div class="card">
             <div class="card-header bg-dark text-white">
-              <h4 style="color:#fff;">
-                <i class="fa fa-sign-in"></i> Login
-              </h4>
+              <h4 style="color:#fff;"><i class="fa fa-sign-in"></i> Login</h4>
             </div>
             <div class="card-body">
               <!-- alert -->
               <form>
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input v-model="form.username" type="text" class="form-control" />
+                  <input
+                    v-model="form.username"
+                    type="text"
+                    class="form-control"
+                  />
                 </div>
 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input v-model="form.password" type="password" class="form-control" />
+                  <input
+                    v-model="form.password"
+                    type="password"
+                    class="form-control"
+                  />
                 </div>
 
-                <input @click.prevent="login" type="submit" class="btn btn-success btn-block" />
+                <input
+                  @click.prevent="login"
+                  type="submit"
+                  class="btn btn-success btn-block"
+                />
                 <!--  -->
               </form>
               <br />
@@ -85,5 +95,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

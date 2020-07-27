@@ -8,7 +8,7 @@
               <div class="float-left">
                 <p>Phone: +01 256 25 235</p>
                 <p>email: info@eiser.com</p>
-                <p v-if="authUser">Welcome {{authUser.username}}</p>
+                <p v-if="authUser">Welcome {{ authUser.username }}</p>
               </div>
             </div>
             <div class="col-lg-5">
@@ -50,7 +50,10 @@
               <span class="icon-bar"></span>
             </button>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+            <div
+              class="collapse navbar-collapse offset w-100"
+              id="navbarSupportedContent"
+            >
               <div class="row w-100 mr-0">
                 <div class="col-lg-7 pr-0">
                   <ul class="nav navbar-nav center_nav pull-right">
@@ -65,16 +68,23 @@
                         role="button"
                         aria-haspopup="true"
                         aria-expanded="false"
-                      >Shop</a>
+                        >Shop</a
+                      >
                       <ul class="dropdown-menu">
                         <li class="nav-item">
-                          <a class="nav-link" href="category.html">Shop Category</a>
+                          <a class="nav-link" href="category.html"
+                            >Shop Category</a
+                          >
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="single-product.html">Product Details</a>
+                          <a class="nav-link" href="single-product.html"
+                            >Product Details</a
+                          >
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="checkout.html">Product Checkout</a>
+                          <a class="nav-link" href="checkout.html"
+                            >Product Checkout</a
+                          >
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="cart.html">Shopping Cart</a>
@@ -89,13 +99,16 @@
                         role="button"
                         aria-haspopup="true"
                         aria-expanded="false"
-                      >Blog</a>
+                        >Blog</a
+                      >
                       <ul class="dropdown-menu">
                         <li class="nav-item">
                           <a class="nav-link" href="blog.html">Blog</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="single-blog.html">Blog Details</a>
+                          <a class="nav-link" href="single-blog.html"
+                            >Blog Details</a
+                          >
                         </li>
                       </ul>
                     </li>
@@ -107,7 +120,8 @@
                         role="button"
                         aria-haspopup="true"
                         aria-expanded="false"
-                      >Pages</a>
+                        >Pages</a
+                      >
                       <ul class="dropdown-menu">
                         <li class="nav-item">
                           <a class="nav-link" href="tracking.html">Tracking</a>
@@ -168,11 +182,12 @@ export default {
   },
   created() {
     this.getAuthUser();
-    console.log("created");
+    this.cart();
   },
-  methods: { ...mapActions(["getAuthUser"]) }
+  methods: {
+    ...mapActions(["getAuthUser", "cart"])
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

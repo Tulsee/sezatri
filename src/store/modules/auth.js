@@ -59,13 +59,13 @@ const actions = {
     };
     const data = JSON.parse(JSON.stringify(formData));
     const isTokenValid = checkTokenValidity(token);
-    console.log(isTokenValid);
+    // console.log(isTokenValid);
     if (authUser && isTokenValid) {
       return Promise.resolve(authUser);
     } else if (isTokenValid) {
-      console.log(token);
+      // console.log(token);
       return axios.post(`/api/v1/user/getuser/`, data).then(response => {
-        console.log(token);
+        // console.log(token);
         const user = response.data;
         commit("setAuthUser", user);
         return response;

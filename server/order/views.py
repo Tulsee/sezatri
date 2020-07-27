@@ -2,15 +2,18 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.generics import ListAPIView
 
 
 from product.models import Product
 from .models import CustomerDetail, Order, OrderItem, Cart
+from product.models import Product
 from user.models import User
 
 
-from .serializers import CartSerializers
+from .serializers import CartSerializers, CartDetailSerializers
+from product.serializers import newProductSerializer
 
 
 class CartViewSet(ModelViewSet):
@@ -19,79 +22,57 @@ class CartViewSet(ModelViewSet):
     lookup_field = 'customer'
 
     def create(self, request, *args, **kwargs):
-        # data = request.data
         dataCopy = request.data
-        customer = dataCopy['customer']
-        user = get_object_or_404(User, id=customer)
+        customerId = dataCopy['customer']
+        user = get_object_or_404(User, id=customerId)
+        # print(user)
         customer, created = CustomerDetail.objects.get_or_create(user=user)
+        productId = dataCopy['product']
+        product = get_object_or_404(Product, id=productId)
         dataCopy['customer'] = customer.id
-        serializer = CartSerializers(data=dataCopy)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+        # print(product)
+        try:
+            query = get_object_or_404(Cart, customer=customer, product=product)
+        except:
+            query = False
+        # print(query)
+        if(query):
+            self.quantityUpdate(request, query)
+            return Response({"message": "update"}, status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors)
+            serializer = CartSerializers(data=dataCopy)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            else:
+                return Response(serializer.errors)
+            return Response({"message": "created"}, status=status.HTTP_201_CREATED)
 
-        # if(created):
-        #     dataCopy['customer'] = created.id
-        #     serializer = CartSerializers(data=dataCopy)
-        #     if serializer.is_valid():
-        #         serializer.save()
-        #         return Response(serializer.data)
-        #     else:
-        #         return Response(serializer.errors)
-        # else:
-        #     dataCopy['customer'] = customer.id
-        #     serializer = CartSerializers(data=dataCopy)
-        #     if serializer.is_valid():
-        #         serializer.save()
-        #         return Response(serializer.data)
-        #     else:
-        #         return Response(serializer.errors)
-        # if(created):
-        #     return Response({'message': created})
-        #     dataCopy['customer'] = created.id
-        #     serializer = CartSerializers(data=dataCopy)
-        #     print('data', serializer.data)
-        #     if serializer.is_valid():
-        #         print('data', serializer.data)
-        #         serializer.save()
-        #         return Response(serializer.data)
-        #     else:
-        #         return Response(serializer.errors)
-        # else:
-        #     dataCopy['customer'] = customer.id
-        #     serializer = CartSerializers(data=dataCopy)
-        #     print('data', serializer.data)
-        #     if serializer.is_valid():
-        #         print('data', serializer.data)
-        #         serializer.save()
-        #         return Response(serializer.data)
-        #     else:
-        #         return Response(serializer.errors)
-
+    def quantityUpdate(self, request, query, *args, **kwargs):
+        dataCopy = request.data
+        partial = kwargs.pop('partial', False)
+        # print(dataCopy)
+        dataCopy['quantity'] = dataCopy['quantity']+query.quantity
+        serializer_class = CartSerializers(
+            instance=query, data=dataCopy, partial=partial)
+        if serializer_class.is_valid():
+            serializer_class.save()
+            return Response(serializer_class.data)
+        # print(dataCopy)
         return Response({"message": "created"}, status=status.HTTP_201_CREATED)
 
 
-@api_view(['POST'])
-def store(request):
-    if request.method == 'POST':
-        cart = request.data
-        # product_id = cart['product']
-        # cart['product'] = get_object_or_404(Product, id=product_id)
-        serializer = CartSerializers(data=cart)
-        if serializer.is_valid():
-            cart = serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors)
-        # data['product'] = get_object_or_404(Product, id=product_id)
+class CartDetailViewSet(ListAPIView):
+    serializer_class = CartDetailSerializers
+    lookup_url_kwarg = "id"
 
+    def get_queryset(self):
+        id = self.kwargs.get(self.lookup_url_kwarg)
+        user = get_object_or_404(User, id=id)
+        customer = get_object_or_404(CustomerDetail, user=user.id)
+        queryset = Cart.objects.filter(customer=customer.id)
+        return queryset
 
-# class Store(APIView):
-#     cart = request.data
-#     user_id = cart['user']
-#     product_id = cart['product_id']
-#     quantity = cart['quantity']
-
-# { "quantity": 1, "total_price": 1000,"checkout": false,"customer": 1,"product": 4}
+    @classmethod
+    def get_extra_actions(self):
+        return Response('TEST')

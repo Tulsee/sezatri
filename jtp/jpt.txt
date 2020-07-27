@@ -1,0 +1,95 @@
+
+class HomeProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    # queryset = Product.objects.order_by(
+    #     '-listed_date').filter(is_published=True)
+    serializer_class = ProductSerializer
+    # @action(detail=True)
+    # def list(self, request):
+    #     queryset1 = Product.objects.order_by(
+    #         '-listed_date').filter(is_published=True)
+    #     newProduct = queryset1[:5]
+    #     serializer = newProductSerializer(newProduct, many=True)
+    #     data = {}
+    #     data['newProduct'] = serializer.data
+    #     queryset2 = Product.objects.order_by(
+    #         '-views').filter(is_published=True)
+    #     featureProduct = queryset2[:3]
+    #     serializer2 = newProductSerializer(featureProduct, many=True)
+    #     data['featureProduct'] = serializer2.data
+    #     return Response(data)
+
+
+# @api_view(['Get'])
+# def getHomeProduct(request):
+#     prd = Product.objects.order_by('-listed_date').filter(is_published=True)
+#     newProduct = prd[:5]
+#     serializer = newProductSerializer(newProduct, many=True)
+#     data = {}
+#     data['newProduct'] = serializer.data
+#     prd = Product.objects.order_by('-views').filter(is_published=True)
+#     newProduct = prd[:3]
+#     serializer = newProductSerializer(newProduct, many=True)
+#     data['featureProduct'] = serializer.data
+#     return Response(data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+    # def store(request):
+    #     if request.method == 'POST':
+    #         cart = request.data
+    #         # product_id = cart['product']
+    #         # cart['product'] = get_object_or_404(Product, id=product_id)
+    #         serializer = CartSerializers(data=cart)
+    #         if serializer.is_valid():
+    #             cart = serializer.save()
+    #             return Response(serializer.data)
+    #         else:
+    # return Response(serializer.errors)
+    # data['product'] = get_object_or_404(Product, id=product_id)
+
+    # class Store(APIView):
+    #     cart = request.data
+    #     user_id = cart['user']
+    #     product_id = cart['product_id']
+    #     quantity = cart['quantity']
+
+    # { "quantity": 1, "total_price": 1000,"checkout": false,"customer": 1,"product": 4}
+
+    # if(created):
+    #     dataCopy['customer'] = created.id
+    #     serializer = CartSerializers(data=dataCopy)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     else:
+    #         return Response(serializer.errors)
+    # else:
+    #     dataCopy['customer'] = customer.id
+    #     serializer = CartSerializers(data=dataCopy)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     else:
+    #         return Response(serializer.errors)
+    # if(created):
+    #     return Response({'message': created})
+    #     dataCopy['customer'] = created.id
+    #     serializer = CartSerializers(data=dataCopy)
+    #     print('data', serializer.data)
+    #     if serializer.is_valid():
+    #         print('data', serializer.data)
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     else:
+    #         return Response(serializer.errors)
+    # else:
+    #     dataCopy['customer'] = customer.id
+    #     serializer = CartSerializers(data=dataCopy)
+    #     print('data', serializer.data)
+    #     if serializer.is_valid():
+    #         print('data', serializer.data)
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     else:
+    #         return Response(serializer.errors)
