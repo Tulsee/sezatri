@@ -181,8 +181,9 @@ export default {
     ...mapGetters(["authUser"])
   },
   created() {
-    this.getAuthUser();
-    this.cart();
+    this.getAuthUser().then(() => {
+      this.cart(this.authUser.id);
+    });
   },
   methods: {
     ...mapActions(["getAuthUser", "cart"])

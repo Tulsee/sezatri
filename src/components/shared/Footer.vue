@@ -98,12 +98,13 @@
         <div class="footer-bottom row align-items-center">
           <p class="footer-text m-0 col-lg-8 col-md-12">
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy; All rights reserved | This template is made with
-            <i
-              class="fa fa-heart-o"
-              aria-hidden="true"
-            ></i> by
-            <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            Copyright &copy; All rights reserved | Power By
+            <a
+              href="https://www.linkedin.com/in/shankar-ghimire-0457a4141/"
+              target="_blank"
+            >
+              Shankar Ghimire</a
+            >
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
           <div class="col-lg-4 col-md-12 footer-social">
@@ -132,5 +133,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

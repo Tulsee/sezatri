@@ -1,23 +1,6 @@
 <template>
   <div>
-    <section class="banner_area">
-      <div class="banner_inner d-flex align-items-center">
-        <div class="container">
-          <div
-            class="banner_content d-md-flex justify-content-between align-items-center"
-          >
-            <div class="mb-3 mb-md-0">
-              <h2>Cart</h2>
-              <p>Very us move be blessed multiply night</p>
-            </div>
-            <div class="page_link">
-              <a href="index.html">Home</a>
-              <a href="cart.html">Cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Banner :title="'Cart'" :text="'All carts Item you have added'" />
     <section class="cart_area">
       <div class="container">
         <div class="cart_inner" style="background:#fff;">
@@ -32,15 +15,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <CartItem />
-                </tr>
+                <CartItem v-for="cart in carts" :key="cart.id" :carts="cart" />
               </tbody>
             </table>
             <hr />
             <div class="cart-total-price">
               <h5>Subtotal</h5>
-              <h5>$2160.00</h5>
+              <h5>${{ total }}</h5>
             </div>
             <hr />
             <div
@@ -52,7 +33,7 @@
                   >Continue Shopping</a
                 >
                 <a
-                  @click.prevent="hello"
+                  @click.prevent="TotalCartPrice()"
                   class="genric-btn danger circle"
                   style="margin-left:3px;"
                   >Proceed to checkout</a
@@ -69,15 +50,27 @@
 </template>
 <script>
 import CartItem from "../components/cart/cartItem";
-// import { mapGetters, mapActions } from "vuex";
+import Banner from "../components/shared/Banner";
+import { mapGetters } from "vuex";
 export default {
   name: "CartPage",
   components: {
-    CartItem
+    CartItem,
+    Banner
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["carts"])
+  },
   created() {},
-  methods: {}
+  methods: {
+    TotalCartPrice() {
+      var total = 0;
+      for (var i = 0; i < this.carts.length; i++) {
+        total += this.carts[i].product.price * this.carts[i].quantity;
+      }
+      return total;
+    }
+  }
 };
 </script>
 <style scoped>

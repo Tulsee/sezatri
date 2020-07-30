@@ -26,7 +26,7 @@ SECRET_KEY = 'n4dj0il@kb6o*1q@koc*!!smqr++l!gqp=63xx)2zsidqb)hz4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_filters',
     'user.apps.UserConfig',
     'product.apps.ProductConfig',
-    'order.apps.OrderConfig'
+    'order.apps.OrderConfig',
+    'blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [

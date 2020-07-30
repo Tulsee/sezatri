@@ -1,38 +1,36 @@
 <template>
-  <div>
+  <tr>
     <td>
       <div class="media">
         <div class="d-flex">
-          <img src="img/product/single-product/cart-1.jpg" alt="" />
+          <img :src="carts.product.thumbnail" alt="" class="thumbnail" />
         </div>
         <div class="media-body">
-          <p>Minimalistic shop for multipurpose use</p>
+          <p>{{ carts.product.name }}</p>
         </div>
       </div>
     </td>
     <td>
-      <h5>$360.00</h5>
+      <h5>${{ carts.product.price }}</h5>
     </td>
     <td>
       <div class="product_count">
         <input
-          type="text"
+          disabled
           name="qty"
-          id="sst"
           maxlength="12"
-          value="1"
-          title="Quantity:"
+          :value="carts.quantity"
           class="input-text qty"
         />
         <button
-          onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+          @click="addProduct()"
           class="increase items-count"
           type="button"
         >
           <i class="lnr lnr-chevron-up"></i>
         </button>
         <button
-          onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+          @click="removeProduct()"
           class="reduced items-count"
           type="button"
         >
@@ -41,13 +39,74 @@
       </div>
     </td>
     <td>
-      <h5>$720.00</h5>
+      <h5>${{ ProductTotalPrice }}</h5>
     </td>
-  </div>
+  </tr>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name: "cartItem"
+  name: "cartItem",
+  props: {
+    carts: {
+      required: true,
+      type: Object
+    }
+  },
+  data() {
+    return {
+      cartDetail: {
+        product: this.carts.product.id,
+        quantity: null,
+        customer: null,
+        checkout: false
+      }
+    };
+  },
+  computed: {
+    ...mapGetters(["authUser"]),
+    ProductTotalPrice() {
+      const pTotal = this.carts.product.price * this.carts.quantity;
+      return pTotal;
+    }
+  },
+  methods: {
+    ...mapActions(["addTocart", "cart"]),
+    addProduct() {
+      this.cartDetail.quantity = 1;
+      this.cartDetail.customer = this.authUser.id;
+      this.addTocart(this.cartDetail);
+    },
+    removeProduct() {
+      this.cartDetail.quantity = -1;
+      this.cartDetail.customer = this.authUser.id;
+      this.addTocart(this.cartDetail).then(() => {
+        this.cart(this.authUser.id);
+      });
+    }
+  }
 };
 </script>
-<style scoped></style>
+<style scoped>
+.thumbnail {
+  width: 150px;
+  height: 110px;
+}
+.quantity {
+  display: inline-block;
+  font-weight: 700;
+  padding-right: 10px;
+}
+
+.chg-quantity {
+  width: 12px;
+  cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  transition: 0.1s;
+}
+
+.chg-quantity:hover {
+  opacity: 0.6;
+}
+</style>
